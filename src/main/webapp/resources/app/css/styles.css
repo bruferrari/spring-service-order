@@ -1,0 +1,8 @@
+.thumbnail {
+	height: 250px;
+}
+
+.thumbnail a {
+	position: absolute;
+	bottom: 30px;
+}
