@@ -77,6 +77,7 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 	
+	//Add mapping for login page without a new specific controller
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/login").setViewName("login");
