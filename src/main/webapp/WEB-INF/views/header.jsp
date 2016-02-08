@@ -32,10 +32,16 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
       <li><a href="${s:mvcUrl('HC#index').build() }"><fmt:message key="so.menu.order.dashboard" /> <span class="sr-only">(current)</span></a></li>
-        <li><a href="${s:mvcUrl('OC#form').build() }"><fmt:message key="so.menu.order.new" /></a></li>
+        <security:authorize access="isAuthenticated()">
+	        <li><a href="${s:mvcUrl('OC#form').build() }"><fmt:message key="so.menu.order.new" /></a></li>
+        </security:authorize>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><security:authentication property="principal" var="user"/>${user.name }
-          	<span class="caret"></span></a>
+        	<security:authorize access="isAuthenticated()">
+        		 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
+        		 	aria-expanded="false"><security:authentication property="principal" var="user"/>${user.name }
+          		<span class="caret"></span></a>
+        	</security:authorize>
+         
           <ul class="dropdown-menu">
             <li><a href="${s:mvcUrl('OC#allOrders').build() }"><fmt:message key="so.menu.dropdown.all" /></a></li>
             <li><a href="${s:mvcUrl('UC#registerUser').build() }"><fmt:message key="so.user.register.title" /></a></li>
@@ -44,6 +50,39 @@
             <li><a href="/spring-service-order/logout">Sair</a></li>
           </ul>
         </li>
+        
+        <security:authorize access="!isAuthenticated()">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+	          <ul id="login-dp" class="dropdown-menu">
+	            <li>
+	            	<div class="row">
+						<div class="col-md-12">
+					
+						<form class="form" name="loginForm" action="<c:url value='/login' />" method="POST">
+							<div class="form-group">
+								<label for="email">e-mail</label>
+								<input type="text" id="username" name="username" class="form-control" placeholder="your personal e-mail" required/>
+							</div>
+							
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" id="password" name="password" class="form-control" placeholder="your password goes here" required>
+							</div>
+							
+							<div class="btn-group">
+								<button type="submit" class="btn btn-primary">Login</button>
+							</div>
+						</form>
+					</div>
+				</div>
+	            
+	            </li>
+	            
+	          </ul>
+	        </li>
+        </security:authorize>
+        
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

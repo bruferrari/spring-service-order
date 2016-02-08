@@ -6,3 +6,36 @@
 	position: absolute;
 	bottom: 30px;
 }
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+#login-dp .btn-group {
+	margin-bottom: 20px;
+}
+
+#login-body {
+	background:url('http://4k-background.com/highresolution/l_062.jpg');
+}
+
+.login-titles {
+	color: white;
+}
+
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
